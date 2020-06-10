@@ -3,6 +3,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <math.h>
+#include "myShape.h"
 #define KEY_ESC 27
 
 void polarview(void);
@@ -22,10 +23,43 @@ void display(void)
 	polarview();
 	glRotatef(theta,0.0,1.0,0.0);
 	glColor3f(1.0,1.0,1.0);
-	if(wireFlag ==GL_TRUE)
-		glutWireCube(1.0);
-	else
-		glutSolidCube(1.0);
+	if(wireFlag ==GL_TRUE){
+		glPushMatrix();
+				glTranslatef(0, 2.0, 0.0);
+				glRotatef(-90.0, 1.0, 0.0, 0.0);
+				glutWireCone(1.0, 2.0, 12, 3);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(0.0, 1.0, 0.0);
+				myWireCylinder(1.0, 2.0, 12);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(0.0, -1.0, 0.0);
+				myWireCylinder(1.0, 2.0, 12);
+			glPopMatrix();
+
+			glPushMatrix();
+				glTranslatef(0.0, -2.5, 0.0);
+				glRotatef(-90.0, 1.0, 0.0, 0.0);
+				glutWireCone(0.5, 1.0, 12, 3);
+			glPopMatrix();
+
+			float wing = 10; //羽の数
+			float wing_rotate = 360 / wing;
+			for (int i = 0; i < wing; i++)
+			{
+				glRotatef(wing_rotate, 0, 1, 0);
+				glPushMatrix();
+				glTranslatef(1.5, -1.0, 0);
+				glScalef(1.0, 2.0, 0.05);
+				glutWireCube(1.0);
+				glPopMatrix();
+			}
+	}else{
+		glutSolidCube(3.0);
+	}
 	glPopMatrix();
 	glutSwapBuffers();
 }
@@ -141,4 +175,3 @@ int main(int argc, char** argv)
 	glutMainLoop();
 	return(0);
 }
-//a
