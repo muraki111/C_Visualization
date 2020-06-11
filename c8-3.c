@@ -14,6 +14,7 @@ float diffuse[] = { 0.7, 0.6, 0.2, 1.0 };
 float specular[] = { 0.6, 0.5, 0.4, 1.0 };
 float ambient[] = { 0.3, 0.2, 0.1, 1.0 };
 float shininess = 128.0;
+float light[] = {1, 1, 0, 0};
 
 void display(void)
 {
@@ -25,7 +26,8 @@ void display(void)
 	glMaterialfv( GL_FRONT, GL_SPECULAR, specular );
 	glMaterialfv( GL_FRONT, GL_AMBIENT, ambient );
 	glMaterialf( GL_FRONT, GL_SHININESS, shininess );
-	glEnable( GL_LIGHTING );
+	glLightfv(GL_LIGHT0, GL_POSITION, light);
+	glEnable(GL_LIGHTING);
 
 	glutSolidSphere( 1.0, 100, 100 );
 
