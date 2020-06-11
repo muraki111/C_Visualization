@@ -1,5 +1,5 @@
 /************************************************************************/
-/*       ProgramÅ@Å@"c8-4.c"                                            */
+/*       ProgramÔøΩ@ÔøΩ@"c8-4.c"                                            */
 /*                                                                      */
 /*       Copyright (c) 2003 by Kiyotaka Kato and Takefumi Hayashi       */
 /*                       All rights reserved                            */
@@ -31,7 +31,7 @@ void display(void)
     float diffuse[] = { 0.0, 0.0, 1.0, 1.0 };
     float specular[] = { 1.0, 1.0, 1.0, 1.0 };
     float ambient[] = { 0.1, 0.1, 0.1, 1.0 };
-				 
+
 	glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
 	glPushMatrix();
@@ -83,8 +83,8 @@ void myKbd(unsigned char key, int x, int y)
 	printf("push a\n");
 	glutPostRedisplay();
 	break;
-  	default:
-   		break;
+		default:
+	break;
 	}
 }
 
@@ -144,7 +144,7 @@ void makeImage2(void)
 void initTexture1(void)
 {
 	makeImage1();
-	
+
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glBindTexture(GL_TEXTURE_2D,1);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -160,7 +160,7 @@ void initTexture1(void)
 void initTexture2(void)
 {
 	makeImage2();
-	
+
 //	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glBindTexture(GL_TEXTURE_2D,2);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -181,7 +181,7 @@ void myInit (char *progname)
     glutCreateWindow(progname);
     glClearColor (0.0, 0.0, 0.0, 1.0);
     glutKeyboardFunc(myKbd);
-		
+
 	resetview();
 	initTexture1();
 	initTexture2();
@@ -261,5 +261,3 @@ void main(int argc, char** argv)
 	glutMotionFunc( myMotion );
 	glutMainLoop();
 }
-
-
