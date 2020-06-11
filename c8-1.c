@@ -7,10 +7,10 @@
 #include <GL/glu.h>
 #include <math.h>
 #define KEY_ESC 27
-	
+
 void polarview(void);
 void resetview(void);
-void drawNormal(float,float,float,float,float,float);/*–@ü•ûŒü‚Ì•\¦*/
+void drawNormal(float,float,float,float,float,float);/*ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì•\ï¿½ï¿½*/
 int xBegin,yBegin;
 int mButton;
 float distance,twist,elevation,azimuth;
@@ -21,24 +21,24 @@ void display(void)
 	glPushMatrix();
 	polarview();
 	glEnable(GL_DEPTH_TEST);/*Z Buffer enable*/
-	glEnable(GL_LIGHTING);/*ShadingŒvZ‚ÌŠJn*/
-	
+	glEnable(GL_LIGHTING);/*Shadingï¿½vï¿½Zï¿½ÌŠJï¿½n*/
+
 	glBegin(GL_POLYGON);
-	glNormal3f(0.0,1.0,0.0);/*–@üƒxƒNƒgƒ‹‚Ìİ’è*/
+	glNormal3f(0.0,1.0,0.0);/*ï¿½@ï¿½ï¿½ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½Ìİ’ï¿½*/
 		glVertex3f(1.0,0.0,1.0);
 		glVertex3f(1.0,0.0,-1.0);
 		glVertex3f(-1.0,0.0,-1.0);
 		glVertex3f(-1.0,0.0,1.0);
 	glEnd();
-	
-	glDisable(GL_LIGHTING);/*ShadingŒvZI—¹*/
+
+	glDisable(GL_LIGHTING);/*Shadingï¿½vï¿½Zï¿½Iï¿½ï¿½*/
 	drawNormal(0.0,0.0,0.0,0.0,1.0,0.0);
 	glPopMatrix();
 	glDisable(GL_DEPTH_TEST);
 	glutSwapBuffers();
 }
 
-void drawNormal(float x0, float y0,float z0,float x1,float y1,float z1)/*–@ü‚ğ•`‚­*/
+void drawNormal(float x0, float y0,float z0,float x1,float y1,float z1)/*ï¿½@ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½*/
 {
 	glColor3f(1.0,0.0,0.0);
 	glLineWidth(2.0);
@@ -74,7 +74,7 @@ void myMouse(int button, int state, int x, int y)
 void myMotion(int x, int y)
 {
 	int xDisp, yDisp;
-	
+
 	xDisp = x -xBegin;
 	yDisp = y -yBegin;
 	switch(mButton){
@@ -97,7 +97,7 @@ void myMotion(int x, int y)
 void myInit(char * progname)
 {
 	int width = 600, height =600;
-	
+
 	glutInitWindowPosition(0,0);
 	glutInitWindowSize(width,height);
 	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
@@ -107,16 +107,16 @@ void myInit(char * progname)
 	glutMouseFunc(myMouse);
 	glutMotionFunc(myMotion);
 	resetview();
-	
+
 	glShadeModel(GL_FLAT);
-	
-	glEnable(GL_LIGHT0);/*0”Ô‚Ìƒ‰ƒCƒg‚ğ—˜—p‰Â”\‚É‚·‚é*/
+
+	glEnable(GL_LIGHT0);/*0ï¿½Ô‚Ìƒï¿½ï¿½Cï¿½gï¿½ğ—˜—pï¿½Â”\ï¿½É‚ï¿½ï¿½ï¿½*/
 }
 
 void myReshape(int width,int height)
 {
 	float aspect =(float)width/(float)height;
-	
+
 	glViewport(0,0,width,height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -148,7 +148,3 @@ int main(int argc, char** argv)
 	glutMainLoop();
 	exit(0);
 }
-
-	
-	
-		

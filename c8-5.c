@@ -20,17 +20,17 @@ void sphereNormal( float, float, float, float * );
 void myKbd(unsigned char c, int x, int y );
 void myMouse(int button, int state, int x, int y);
 void myMotion(int x, int y);
-void chgShade( void ); 
+void chgShade( void );
 void sphereNormal( float, float, float, float * );
 
-static float xOrigin = 0.0, yOrigin = 0.0; 
+static float xOrigin = 0.0, yOrigin = 0.0;
 static int xBegin = 0, yBegin = 0;
 
 int shadeStyle = SHADE_FLAT1;
 unsigned char smoothFlag = GL_FALSE;
 int mButton;
 float distance, twist, elevation, azimuth;
-float rSphere = 3.0;   
+float rSphere = 3.0;
 int division = 1;
 
 
@@ -99,7 +99,7 @@ void display(void)
 	}
 	glPopMatrix ();
     glDisable( GL_DEPTH_TEST );
-	glutSwapBuffers(); 
+	glutSwapBuffers();
 }
 
 
@@ -259,7 +259,7 @@ void myInit (char *progname)
     glutCreateWindow(progname);
     glClearColor (0.0, 0.0, 0.0, 1.0);
 
-    glutKeyboardFunc( myKbd );   
+    glutKeyboardFunc( myKbd );
 	glutMouseFunc( myMouse );
     glutMotionFunc( myMotion );
 	resetview();
@@ -303,7 +303,6 @@ int main(int argc, char** argv)
 	myInit(argv[0]);
 	glutReshapeFunc (myReshape);
 	glutDisplayFunc(display);
-	glutMainLoop(); 
+	glutMainLoop();
 	return(0);
 }
-

@@ -18,14 +18,14 @@ float distance, twist, elevation, azimuth;
 
 void display(void)
 {
-    float vertex_data[4][3] = {  1.0,  0.0,  1.0, 
+    float vertex_data[4][3] = {  1.0,  0.0,  1.0,
                                  1.0,  0.0, -1.0,
                                 -1.0,  0.0, -1.0,
                                 -1.0,  0.0,  1.0 };
 
-    float normal_data[4][3] = { 0.447214,  0.774597,  0.447214, 
+    float normal_data[4][3] = { 0.447214,  0.774597,  0.447214,
                                 0.447214,  0.774597, -0.447214,
-                               -0.447214,  0.774597, -0.447214, 
+                               -0.447214,  0.774597, -0.447214,
                                -0.447214,  0.774597,  0.447214 };
     int i;
 
@@ -36,7 +36,7 @@ void display(void)
 	glEnable( GL_LIGHTING );
 
     glBegin( GL_POLYGON );
-    for( i = 0 ; i < 4; ++i ) { 
+    for( i = 0 ; i < 4; ++i ) {
         glNormal3fv( normal_data[i] );
         glVertex3fv( vertex_data[i] );
     }
@@ -47,7 +47,7 @@ void display(void)
         drawNormal( vertex_data[i], normal_data[i] );
 	glPopMatrix ();
 	glDisable( GL_DEPTH_TEST );
-	glutSwapBuffers(); 
+	glutSwapBuffers();
 }
 
 
@@ -94,7 +94,7 @@ void myMouse(int button, int state, int x, int y)
 void myMotion(int x, int y)
 {
 	int xDisp, yDisp;
- 
+
     xDisp = x - xBegin;
     yDisp = y - yBegin;
     switch(mButton){
@@ -168,6 +168,6 @@ int main(int argc, char** argv)
 	myInit(argv[0]);
 	glutReshapeFunc (myReshape);
 	glutDisplayFunc(display);
-	glutMainLoop(); 
+	glutMainLoop();
 	return(0);
-}	
+}
