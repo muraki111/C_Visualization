@@ -17,7 +17,7 @@
 void polarview( void );
 void resetview( void );
 unsigned char image[imageHeight][imageWidth][4];
-float xOrigin = 0.0, yOrigin = 0.0; 
+float xOrigin = 0.0, yOrigin = 0.0;
 int xBegin = 0, yBegin = 0;
 int mButton;
 float distance, twist, elevation, azimuth;
@@ -82,7 +82,7 @@ void display(void)
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_LIGHTING);
 	glDisable(GL_DEPTH_TEST);
-	glutSwapBuffers(); 
+	glutSwapBuffers();
 }
 
 void myKbd( unsigned char key, int x, int y )
@@ -150,8 +150,8 @@ void makeImage(void)
 	int i,j;
 	for (i = 0; i < imageHeight; i++) {
    		for (j = 0; j < imageWidth; j++) {
-        	image[i][j][0] = (unsigned char) bitmap1[i][j];			// bitmap2‚É•Ï‚¦‚½‚è
-        	image[i][j][1] = (unsigned char) bitmap1[i][j];			// bitmap1‚Ì“à—e‚ð•Ï‚¦‚Ä‚Ý‚é
+        	image[i][j][0] = (unsigned char) bitmap1[i][j];			// bitmap2ï¿½É•Ï‚ï¿½ï¿½ï¿½ï¿½ï¿½
+        	image[i][j][1] = (unsigned char) bitmap1[i][j];			// bitmap1ï¿½Ì“ï¿½ï¿½eï¿½ï¿½Ï‚ï¿½ï¿½Ä‚Ý‚ï¿½
         	image[i][j][2] = (unsigned char) bitmap1[i][j];
         	image[i][j][3] = (unsigned char) 50;
      	}
@@ -164,9 +164,9 @@ void initTexture(void)
 	makeImage();
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);	/* GL_LINEAR‚É•Ï‚¦‚Ä‚Ý‚é */
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);  /* GL_LINEAR‚É•Ï‚¦‚Ä‚Ý‚é */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);	/* GL_LINEARï¿½É•Ï‚ï¿½ï¿½Ä‚Ý‚ï¿½ */
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);  /* GL_LINEARï¿½É•Ï‚ï¿½ï¿½Ä‚Ý‚ï¿½ */
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, imageWidth, imageHeight,
                 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 }
