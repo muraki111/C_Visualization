@@ -105,7 +105,7 @@ void myMotion(int x, int y)
     case GLUT_MIDDLE_BUTTON:
         twist = fmod (twist + xDisp, 360.0);
         break;
-   case GLUT_RIGHT_BUTTON:
+    case GLUT_RIGHT_BUTTON:
         distance -= (double) yDisp/40.0;
         break;
 	}
@@ -129,7 +129,7 @@ void myInit (char *progname)
 	glShadeModel( GL_SMOOTH );
 
 	glEnable( GL_LIGHT0 );
-  }
+}
 
 
 void myReshape(int width, int height)
