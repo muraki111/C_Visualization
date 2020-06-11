@@ -12,3 +12,5 @@ c8-5.exe
 c8-6.exe
 repo.exe
 *.exe
+*.h
+*.bmp
