@@ -10,9 +10,9 @@
 void polarview( void );
 float distance=7.0, twist=0.0, elevation=-45.0, azimuth=30.0;
 
-float diffuse[] = { 0.0, 0.5, 1.0, 1.0 };
-float specular[] = { 0.8, 0.8, 0.8, 1.0 };
-float ambient[] = { 0.1, 0.1, 0.1, 1.0 };
+float diffuse[] = { 0.7, 0.6, 0.2, 1.0 };
+float specular[] = { 0.6, 0.5, 0.4, 1.0 };
+float ambient[] = { 0.3, 0.2, 0.1, 1.0 };
 float shininess = 128.0;
 
 void display(void)
@@ -83,6 +83,6 @@ int main(int argc, char** argv)
 	myInit(argv[0]);
 	glutReshapeFunc (myReshape);
 	glutDisplayFunc(display);
-	glutMainLoop(); 
+	glutMainLoop();
 	return(0);
 }
