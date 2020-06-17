@@ -30,15 +30,15 @@ void drawCP(void)
 {
 	int i;
 	float x,y,z;
-	glColor3f(1.0,1.0,0.0);
+	glColor3f(1.0,1.0,1.0);
 	glPointSize(5.0);
-	glBegin(GL_POINTS);
-		for (i=0;i<4;i++) {
-			x=cpoint[i][0]/cpoint[i][3];
-			y=cpoint[i][1]/cpoint[i][3];
-			z=cpoint[i][2]/cpoint[i][3];
-			glVertex3f(x,y,z);
-		}
+	// glBegin(GL_POINTS);
+	// 	for (i=0;i<4;i++) {
+	// 		x=cpoint[i][0]/cpoint[i][3];
+	// 		y=cpoint[i][1]/cpoint[i][3];
+	// 		z=cpoint[i][2]/cpoint[i][3];
+	// 		glVertex3f(x,y,z);
+	// 	}
 	glEnd();
 }
 
@@ -49,15 +49,15 @@ void display(void)
 	polarview();
     glEnable( GL_DEPTH_TEST );
 
-	glColor3f(1.0,0.0,0.0);
+	glColor3f(1.0,1.0,1.0);
 	glPushMatrix();
 
 	gluBeginCurve(nrb_obj);
 		gluNurbsCurve(nrb_obj,
 				8,knotvec,
 				4,
-				&cpoint[0][0],				//
-				4,				//
+				&cpoint[0][0],
+				4,
 				GL_MAP1_VERTEX_4
 				);
 	gluEndCurve(nrb_obj);
@@ -74,9 +74,9 @@ void myKbd(unsigned char key, int x, int y)
 {
 	switch(key) {
     case KEY_ESC:
-     	exit( 0 );
-  	default:
-   		break;
+		exit( 0 );
+	default:
+		break;
 	}
 }
 
