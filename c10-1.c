@@ -28,18 +28,18 @@ void create_nurbs(void)
 
 void drawCP(void)//4つの点たち
 {
-	// int i;
-	// float x,y,z;
-	// glColor3f(1.0,1.0,1.0);
-	// glPointSize(5.0);
-	// glBegin(GL_POINTS);
-	// 	for (i=0;i<4;i++) {
-	// 		x=cpoint[i][0]/cpoint[i][3];
-	// 		y=cpoint[i][1]/cpoint[i][3];
-	// 		z=cpoint[i][2]/cpoint[i][3];
-	// 		glVertex3f(x,y,z);
-	// 	}
-	// glEnd();
+	int i;
+	float x,y,z;
+	glColor3f(1.0,1.0,1.0);
+	glPointSize(5.0);
+	glBegin(GL_POINTS);
+		for (i=0;i<4;i++) {
+			x=cpoint[i][0]/cpoint[i][3];
+			y=cpoint[i][1]/cpoint[i][3];
+			z=cpoint[i][2]/cpoint[i][3];
+			glVertex3f(x,y,z);
+		}
+	glEnd();
 }
 
 void display(void)
@@ -48,25 +48,42 @@ void display(void)
 	glPushMatrix();
 	polarview();
     glEnable( GL_DEPTH_TEST );
-	glLineWidth(50);
+	glLineWidth(1);//線の太さ
 	glColor3f(1.0, 1.0, 1.0);
 	glPushMatrix();
 
-	gluBeginCurve(nrb_obj);
+		gluBeginCurve(nrb_obj);
 		gluNurbsCurve(nrb_obj,
-				8,knotvec,
-				4,
-				&cpoint[0][0],
-				4,
-				GL_MAP1_VERTEX_4
-				);
-	gluEndCurve(nrb_obj);
-
+					8, knotvec,
+					4,
+					&cpoint[0][0],
+					4,
+					GL_MAP1_VERTEX_4);
+		gluEndCurve(nrb_obj);
 	glPopMatrix();
-	drawCP();//4つの点
+
+
+	//drawCP();//4つの点
     glDisable( GL_DEPTH_TEST );
+
+	glBegin(GL_LINES);
+	glLineWidth(100);//線の太さ
+	glColor3f(1.0, 0, 0);
+	glPushMatrix();
+
+		for (float f = -40; f < 60; f += 2)
+		{
+			glVertex3f((float)f, -5, -40.0);
+			glVertex3f((float)f, -5, 60.0);
+			glVertex3f(-50, -5, (float)f);
+			glVertex3f(50, -5, (float)f);
+		}
+		glEnd();
+	glPopMatrix();
 	glPopMatrix();
 	glutSwapBuffers();
+	glColor3f(0, 1.0, 1.0);
+
 }
 
 
@@ -97,14 +114,14 @@ void myMotion(int x, int y)
     xDisp = x - xBegin;
     yDisp = y - yBegin;
     switch(mButton){
-    case GLUT_LEFT_BUTTON:
+    case GLUT_LEFT_BUTTON://視点移動
         azimuth += (float) xDisp/2.0;
         elevation -= (float) yDisp/2.0;
         break;
-    case GLUT_MIDDLE_BUTTON:
+    case GLUT_MIDDLE_BUTTON://回転
         twist = fmod (twist + xDisp, 360.0);
         break;
-    case GLUT_RIGHT_BUTTON:
+    case GLUT_RIGHT_BUTTON://拡大縮小
         distance -= (float) yDisp/40.0;
         break;
     }
@@ -156,7 +173,6 @@ void resetview( void )
     elevation = -45.0;
     azimuth = 30.0;
 }
-
 
 int main(int argc, char** argv)
 {
