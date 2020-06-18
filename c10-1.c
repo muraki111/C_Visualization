@@ -13,10 +13,10 @@ float nearw = 1.0, farw = 30.0, fovy = 60.0;
 int mButton;
 float knotvec[8]={0.0,0.0,0.0,0.0,1.0,1.0,1.0,1.0};
 float cpoint[4][4]=	{
-					{1.0, -1.0, 0.0, 1.0 },
-					{0.5, -0.5, 1.0, 1.0 },
-					{-0.5, 0.5, -1.0, 1.0 },
-					{-1.0, 1.0, 0.0, 1.0 }
+					{1.0, -1.0, 0.0, 1.0 },//曲線座標(x,y,x,?)
+					{0.5, -0.5, 3.0, 1.0 },//曲線座標(x,y,x,?)
+					{-0.5, 0.5, -3.0, 1.0 },//曲線座標(x,y,x,?)
+					{-1.0, 1.0, 0.0, 1.0 }//曲線座標(x,y,x,?)
 					};
 
 GLUnurbsObj *nrb_obj;
@@ -26,12 +26,12 @@ void create_nurbs(void)
 	gluNurbsProperty(nrb_obj, GLU_SAMPLING_TOLERANCE, 25.0);
 }
 
-void drawCP(void)
+void drawCP(void)//4つの点たち
 {
-	int i;
-	float x,y,z;
-	glColor3f(1.0,1.0,1.0);
-	glPointSize(5.0);
+	// int i;
+	// float x,y,z;
+	// glColor3f(1.0,1.0,1.0);
+	// glPointSize(5.0);
 	// glBegin(GL_POINTS);
 	// 	for (i=0;i<4;i++) {
 	// 		x=cpoint[i][0]/cpoint[i][3];
@@ -39,7 +39,7 @@ void drawCP(void)
 	// 		z=cpoint[i][2]/cpoint[i][3];
 	// 		glVertex3f(x,y,z);
 	// 	}
-	glEnd();
+	// glEnd();
 }
 
 void display(void)
@@ -48,8 +48,8 @@ void display(void)
 	glPushMatrix();
 	polarview();
     glEnable( GL_DEPTH_TEST );
-
-	glColor3f(1.0,1.0,1.0);
+	glLineWidth(50);
+	glColor3f(1.0, 1.0, 1.0);
 	glPushMatrix();
 
 	gluBeginCurve(nrb_obj);
@@ -63,7 +63,7 @@ void display(void)
 	gluEndCurve(nrb_obj);
 
 	glPopMatrix();
-	drawCP();
+	drawCP();//4つの点
     glDisable( GL_DEPTH_TEST );
 	glPopMatrix();
 	glutSwapBuffers();
