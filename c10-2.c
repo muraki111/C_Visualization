@@ -23,25 +23,25 @@ float whiteSpecular[] = { 1.0, 1.0, 1.0, 1.0 };
 float whiteAmbient[] = { 0.1, 0.1, 0.1, 1.0 };
 float cpoint[4][4][4]={
 	{
-	 	{1.0, -1.0, 0.0, 1.0 },	
+	 	{1.0, -1.0, 0.0, 1.0 },
 		{0.5, -1.0, 0.0, 1.0 },
 		{-0.5, -1.0, 0.0, 1.0 },
 		{-1.0, -1.0, 0.0, 1.0 }
 	 },
 	 {
-	 	{1.0, -0.5, 1.0, 1.0 },	
+	 	{1.0, -0.5, 1.0, 1.0 },
 		{0.5, -0.5, 1.0, 1.0 },
 		{-0.5, -0.5, 1.0, 1.0 },
 		{-1.0, -0.5, 1.0, 1.0 }
 	 },
 	 {
-	 	{1.0, 0.5, -1.0, 1.0 },	
+	 	{1.0, 0.5, -1.0, 1.0 },
 		{0.5, 0.5, -1.0, 1.0 },
 		{-0.5, 0.5, -1.0, 1.0 },
 		{-1.0, 0.5, -1.0, 1.0 }
 	 },
 	 {
-	 	{1.0, 1.0, 0.0, 1.0 },	
+	 	{1.0, 1.0, 0.0, 1.0 },
 		{0.5, 1.0, 0.0, 1.0 },
 		{-0.5, 1.0, 0.0, 1.0 },
 		{-1.0, 1.0, 0.0, 1.0 }
@@ -77,19 +77,19 @@ void drawCP(void)
 }
 
 void display(void)
-{		 
+{
 	glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glPushMatrix();
 	polarview();
     glEnable( GL_DEPTH_TEST );
 	glEnable( GL_LIGHTING );
-	
+
 	glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
 	glMaterialfv( GL_FRONT_AND_BACK, GL_DIFFUSE, greenDiffuse );
 	glMaterialfv( GL_FRONT_AND_BACK, GL_SPECULAR, whiteSpecular );
 	glMaterialfv( GL_FRONT_AND_BACK, GL_AMBIENT, whiteAmbient );
 	glMaterialf( GL_FRONT_AND_BACK, GL_SHININESS, 128.0 );
-  
+
     glEnable( GL_NORMALIZE);
 	glEnable( GL_AUTO_NORMAL);
 	glPushMatrix();
@@ -105,7 +105,7 @@ void display(void)
 				GL_MAP2_VERTEX_4
 				);
 	gluEndSurface(nrb_obj);
-	
+
 	glPopMatrix();
 	glDisable( GL_LIGHTING );
 	drawCP();
