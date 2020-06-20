@@ -68,31 +68,10 @@ void Initialize(void){
 void Display(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //バッファの消去
 
-  //球
-  glPushMatrix();
-  glColor3d(1.0, 0.0, 0.0); //色の設定
-  glTranslated(0.0, 10.0, 20.0);//平行移動値の設定
-  glutSolidSphere(4.0, 20, 20);//引数：(半径, Z軸まわりの分割数, Z軸に沿った分割数)
-  glPopMatrix();
-
-  //立方体
-  glPushMatrix();
-  glColor3d(0.0, 1.0, 0.0);//色の設定
-  glTranslated(-20.0, 0.0, 20.0);//平行移動値の設定
-  glutSolidCube(10.0);//引数：(一辺の長さ)
-  glPopMatrix();
-
-  //円錐
-  glPushMatrix();
-  glColor3d(0.0, 0.0, 1.0);//色の設定
-  glTranslated(20.0, 100.0, 0.0);//平行移動値の設定
-  glutSolidCone(5.0,10.0,20,20);//引数：(半径, 高さ, Z軸まわりの分割数, Z軸に沿った分割数)
-  glPopMatrix();
-
   //直方体
   glPushMatrix();
-  glColor3d(0.0, 1.0, 1.0);//色の設定
-  glTranslated(30.0, 50.0, 0.0);//平行移動値の設定
+  glColor3d(1.0, 0, 0);//色の設定
+  glTranslated(0.0, 0.0, 0.0);//平行移動値の設定
   glBegin(GL_QUADS);
   for (int j = 0; j < 6; ++j) {
     for (int i = 0; i < 4; ++i) {
