@@ -113,11 +113,11 @@ void myMotion(int x, int y)
     yDisp = y - yBegin;
     switch(mButton){
     case GLUT_LEFT_BUTTON://視点移動
-        azimuth += (float) xDisp/2.0;
-        elevation -= (float) yDisp/2.0;
+        //azimuth += (float) xDisp/2.0;
+        //elevation -= (float) yDisp/2.0;
         break;
     case GLUT_MIDDLE_BUTTON://回転
-        twist = fmod (twist + xDisp, 360.0);
+        //twist = fmod (twist + xDisp, 360.0);
         break;
     case GLUT_RIGHT_BUTTON://拡大縮小
         distance -= (float) yDisp/40.0;
