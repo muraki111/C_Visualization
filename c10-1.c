@@ -46,42 +46,39 @@ void display(void)
 {
 	glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glPushMatrix();
-	polarview();
-    glEnable( GL_DEPTH_TEST );
-	glLineWidth(1);//線の太さ
-	glColor3f(1.0, 1.0, 1.0);
+		polarview();
+		glEnable( GL_DEPTH_TEST );
+			glLineWidth(1);//線の太さ
+			glColor3f(1.0, 1.0, 1.0);
 
-		gluBeginCurve(nrb_obj);
-		gluNurbsCurve(nrb_obj,
-					8, knotvec,
-					4,
-					&cpoint[0][0],
-					4,
-					GL_MAP1_VERTEX_4);
-		gluEndCurve(nrb_obj);
+			gluBeginCurve(nrb_obj);//曲線
+				gluNurbsCurve(nrb_obj,
+							8, knotvec,
+							4,
+							&cpoint[0][0],
+							4,
+							GL_MAP1_VERTEX_4);
+			gluEndCurve(nrb_obj);
 
+			//drawCP();//4つの点
+		glDisable( GL_DEPTH_TEST );
 
-	//drawCP();//4つの点
-    glDisable( GL_DEPTH_TEST );
-
-	glBegin(GL_LINES);
-	glLineWidth(100);//線の太さ
-	glColor3f(0, 0, 1.0);
-	glPushMatrix();
-
-		for (float f = -40; f < 60; f += 2)
-		{
-			glVertex3f((float)f, -5, -40.0);
-			glVertex3f((float)f, -5, 60.0);
-			glVertex3f(-50, -5, (float)f);
-			glVertex3f(50, -5, (float)f);
-		}
-		glEnd();
+		glPushMatrix();
+			glBegin(GL_LINES);
+				glLineWidth(100);//線の太さ
+				glColor3f(0, 0, 1.0);
+				for (float f = -40; f < 60; f += 2)
+				{
+					glVertex3f((float)f, -5, -40.0);
+					glVertex3f((float)f, -5, 60.0);
+					glVertex3f(-50, -5, (float)f);
+					glVertex3f(50, -5, (float)f);
+				}
+			glEnd();
+		glPopMatrix();
 	glPopMatrix();
-	glPopMatrix();
+
 	glutSwapBuffers();
-	glColor3f(0, 1.0, 1.0);
-
 }
 
 
