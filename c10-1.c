@@ -50,7 +50,6 @@ void display(void)
     glEnable( GL_DEPTH_TEST );
 	glLineWidth(1);//線の太さ
 	glColor3f(1.0, 1.0, 1.0);
-	glPushMatrix();
 
 		gluBeginCurve(nrb_obj);
 		gluNurbsCurve(nrb_obj,
@@ -60,7 +59,6 @@ void display(void)
 					4,
 					GL_MAP1_VERTEX_4);
 		gluEndCurve(nrb_obj);
-	glPopMatrix();
 
 
 	//drawCP();//4つの点
@@ -68,7 +66,7 @@ void display(void)
 
 	glBegin(GL_LINES);
 	glLineWidth(100);//線の太さ
-	glColor3f(1.0, 0, 0);
+	glColor3f(0, 0, 1.0);
 	glPushMatrix();
 
 		for (float f = -40; f < 60; f += 2)
