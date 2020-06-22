@@ -148,5 +148,5 @@ void main(int argc, char** argv)
 	myInit(argv[0]);
 	glutReshapeFunc(myReshape);
 	glutDisplayFunc(display);
-	glutMainLoop(); 
+	glutMainLoop();
 }
