@@ -48,9 +48,9 @@ void display(void)
 	glPushMatrix();
 		//gluLookAt(2,0,4, 2,1,1, 0,1,0);//(カメラ位置,カメラ向き,謎)
 		polarview();
-		glEnable( GL_DEPTH_TEST );
+		glEnable( GL_DEPTH_TEST );//曲線
 			glLineWidth(1);//線の太さ
-			glColor3f(1.0, 1.0, 1.0);
+			glColor3f(1.0, 1.0, 1.0);//曲線色
 
 			gluBeginCurve(nrb_obj);//曲線
 				gluNurbsCurve(nrb_obj,
@@ -64,10 +64,9 @@ void display(void)
 			//drawCP();//4つの点
 		glDisable( GL_DEPTH_TEST );
 
-		glPushMatrix();
+		glPushMatrix();//地面
 			glBegin(GL_LINES);
-				glLineWidth(100);//線の太さ
-				glColor3f(0, 0, 1.0);
+				glColor3f(0, 0, 1.0);//地面色
 				for (float f = -40; f < 60; f += 2)
 				{
 					glVertex3f((float)f, -5, -40.0);
@@ -78,9 +77,9 @@ void display(void)
 			glEnd();
 		glPopMatrix();
 
-		glPushMatrix();
-			glColor3f(1.0, 0, 0);
-			glutWireTorus(0.05, 0.25, 50, 100); //(太さ,大きさ,?,?)
+		glPushMatrix();//サークル
+			glColor3f(1.0, 0, 0);//サークル色
+			glutWireTorus(0.05, 0.25, 50, 100); //サークル(太さ,大きさ,?,?)
 		glPopMatrix();
 
 		glPopMatrix();
