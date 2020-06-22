@@ -18,6 +18,10 @@ float cpoint[4][4]=	{
 					{0.0, 0.5, -3.0, 1.0 },//曲線座標(x,y,z,?)
 					{0.0, 1.0, 0.0, 1.0 }//曲線座標(x,y,z,?)
 					};
+float circle_x = 0;//S字から見て奥手前移動
+float circle_y = 0;//S字から見て上下
+float circle_z = 0;//S字から見て左右
+float angle = 0;//輪っかの回転
 
 GLUnurbsObj *nrb_obj;
 void create_nurbs(void)
@@ -78,24 +82,40 @@ void display(void)
 		glPopMatrix();
 
 		glPushMatrix();//サークル
-			glColor3f(1.0, 0, 0);//サークル色
-			glutWireTorus(0.05, 0.25, 50, 100); //サークル(太さ,大きさ,?,?)
+		//glRotatef(angle, circle_z, 0, 0);//サークル回転
+		glTranslatef(circle_x, circle_y, circle_z); //サークル位置
+		glColor3f(1.0, 0, 0);						//サークル色
+		glutWireTorus(0.05, 0.25, 50, 100);			//サークル(太さ,大きさ,?,?)
 		glPopMatrix();
 
-		glPopMatrix();
+	glPopMatrix();
 
-		glutSwapBuffers();
+	glutSwapBuffers();
 }
-
 
 void myKbd(unsigned char key, int x, int y)
 {
 	switch(key) {
-    case KEY_ESC:
-		exit( 0 );
-	default:
+	case 'w':
+		circle_y += 0.01;//S字から見て上下
+		break;
+	case 'a':
+		circle_z += 0.01;//S字から見て左右
+		break;
+	case 's':
+		circle_y -= 0.01;//S字から見て上下
+		break;
+	case 'd':
+		circle_z -= 0.01;//S字から見て左右
+		break;
+	case 'q':
+		angle += 1;//S字から見て上下
+		break;
+	case 'e':
+		angle -= 1;//S字から見て左右
 		break;
 	}
+	glutPostRedisplay();
 }
 
 void myMouse( int button, int state, int x, int y )
@@ -120,6 +140,7 @@ void myMotion(int x, int y)
         elevation -= (float) yDisp/2.0;
         break;
     case GLUT_MIDDLE_BUTTON://回転
+		circle_x += 0.001;
         //twist = fmod (twist + xDisp, 360.0);
         break;
     case GLUT_RIGHT_BUTTON://拡大縮小
