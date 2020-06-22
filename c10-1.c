@@ -46,7 +46,7 @@ void display(void)
 {
 	glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glPushMatrix();
-		gluLookAt(2,0,4, 2,1,1, 0,1,0);//(カメラ位置,カメラ向き,謎)
+		//gluLookAt(2,0,4, 2,1,1, 0,1,0);//(カメラ位置,カメラ向き,謎)
 		polarview();
 		glEnable( GL_DEPTH_TEST );
 			glLineWidth(1);//線の太さ
@@ -77,9 +77,14 @@ void display(void)
 				}
 			glEnd();
 		glPopMatrix();
-	glPopMatrix();
 
-	glutSwapBuffers();
+		glPushMatrix();
+			glutWireTorus(0.02,1,100,100);
+		glPopMatrix();
+
+		glPopMatrix();
+
+		glutSwapBuffers();
 }
 
 
