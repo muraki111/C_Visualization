@@ -79,7 +79,8 @@ void display(void)
 		glPopMatrix();
 
 		glPushMatrix();
-			glutWireTorus(0.02,0.25,100,100);//(,大きさ,,)
+			glColor3f(1.0, 0, 0);
+			glutWireTorus(0.05, 0.25, 50, 100); //(太さ,大きさ,?,?)
 		glPopMatrix();
 
 		glPopMatrix();
