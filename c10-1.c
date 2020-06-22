@@ -46,6 +46,7 @@ void display(void)
 {
 	glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glPushMatrix();
+		gluLookAt(2,0,4, 2,1,1, 0,1,0);//(カメラ位置,カメラ向き,謎)
 		polarview();
 		glEnable( GL_DEPTH_TEST );
 			glLineWidth(1);//線の太さ
@@ -110,8 +111,8 @@ void myMotion(int x, int y)
     yDisp = y - yBegin;
     switch(mButton){
     case GLUT_LEFT_BUTTON://視点移動
-        //azimuth += (float) xDisp/2.0;
-        //elevation -= (float) yDisp/2.0;
+        azimuth += (float) xDisp/2.0;
+        elevation -= (float) yDisp/2.0;
         break;
     case GLUT_MIDDLE_BUTTON://回転
         //twist = fmod (twist + xDisp, 360.0);
