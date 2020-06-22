@@ -79,7 +79,7 @@ void display(void)
 		glPopMatrix();
 
 		glPushMatrix();
-			glutWireTorus(0.02,1,100,100);
+			glutWireTorus(0.02,0.25,100,100);//(,大きさ,,)
 		glPopMatrix();
 
 		glPopMatrix();
