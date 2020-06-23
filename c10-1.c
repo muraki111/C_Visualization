@@ -93,29 +93,16 @@ void display(void)
 	glutSwapBuffers();
 }
 
-void myKbd(unsigned char key, int x, int y)
+void myKbd(unsigned char key, int x, int y)//キーボード処理
 {
-	switch(key) {
-	case 'w':
-		circle_y += 0.01;//S字から見て上下
-		break;
-	case 'a':
-		circle_z += 0.01;//S字から見て左右
-		break;
-	case 's':
-		circle_y -= 0.01;//S字から見て上下
-		break;
-	case 'd':
-		circle_z -= 0.01;//S字から見て左右
-		break;
-	case 'q':
-		angle += 1;//S字から見て上下
-		break;
-	case 'e':
-		angle -= 1;//S字から見て左右
-		break;
-	}
-	glutPostRedisplay();
+	if (key == 'w')circle_y += 0.01; //S字から見て上下
+	else if (key == 'a') circle_z += 0.01; //S字から見て左右
+	else if (key == 's') circle_y -= 0.01; //S字から見て上下
+	else if (key == 'd') circle_z -= 0.01; //S字から見て左右
+	else if (key == 'q') angle += 1;//S字から見て上下
+	else if (key == 'e') angle -= 1;//S字から見て左右
+
+		glutPostRedisplay();
 }
 
 void myMouse( int button, int state, int x, int y )
