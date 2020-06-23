@@ -82,10 +82,10 @@ void display(void)
 		glPopMatrix();
 
 		glPushMatrix();//サークル
-		//glRotatef(angle, circle_z, 0, 0);//サークル回転
-		glTranslatef(circle_x, circle_y, circle_z); //サークル位置
-		glColor3f(1.0, 0, 0);						//サークル色
-		glutWireTorus(0.05, 0.25, 50, 100);			//サークル(太さ,大きさ,?,?)
+		glRotatef(angle, 1, 0, 0);//サークル回転
+		glTranslatef(circle_x, circle_y + 1, circle_z); //サークル位置
+		glColor3f(1.0, 0, 0);//サークル色
+		glutWireTorus(0.05, 0.25, 50, 100);//サークル(太さ,大きさ,?,?)
 		glPopMatrix();
 
 	glPopMatrix();
@@ -101,8 +101,7 @@ void myKbd(unsigned char key, int x, int y)//キーボード処理
 	else if (key == 'd') circle_z -= 0.01; //S字から見て左右
 	else if (key == 'q') angle += 1;//S字から見て上下
 	else if (key == 'e') angle -= 1;//S字から見て左右
-
-		glutPostRedisplay();
+	glutPostRedisplay();
 }
 
 void myMouse( int button, int state, int x, int y )
