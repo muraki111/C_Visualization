@@ -82,26 +82,30 @@ void display(void)
 		glPopMatrix();
 
 		glPushMatrix();//サークル
-		glTranslatef(0, 0, 0);
-		glRotatef(angle, 1, 0, 0);					//サークル回転
-		glTranslatef(circle_x, circle_y + 1, circle_z); //サークル位置
-		glColor3f(1.0, 0, 0);			   //サークル色
-		glutWireTorus(0.05, 0.25, 50, 100);//サークル(太さ,大きさ,?,?)
+			glTranslatef(0, 0, 0);
+			glRotatef(angle, 1, 0, 0);					//サークル回転
+			glTranslatef(circle_x, circle_y + 1, circle_z); //サークル位置
+			glColor3f(1.0, 0, 0);			   //サークル色
+			glutWireTorus(0.05, 0.25, 50, 100);//サークル(太さ,大きさ,?,?)
 
-		//当たり判定用キューブ下
-		glColor3f(0, 0, 1.0);
-		glTranslatef(0,0-0.25,0);
-		glutWireCube(0.08);
+			//当たり判定用キューブ下
+			glColor3f(0, 0, 1.0);
+			glTranslatef(0,0-0.25,0);
+			glutWireCube(0.08);
 
-		//当たり判定用キューブ下
-		glColor3f(0, 0, 1.0);
-		glTranslatef(0,0 + 0.5,0);
-		glutWireCube(0.08);
+			//当たり判定用キューブ下
+			glColor3f(0, 0, 1.0);
+			glTranslatef(0,0 + 0.5,0);
+			glutWireCube(0.08);
 
+			glPopMatrix();
+
+			glPushMatrix();
+				glutWireCube(0.5);
+			glPopMatrix();
 		glPopMatrix();
 
 	glPopMatrix();
-
 	glutSwapBuffers();
 }
 
