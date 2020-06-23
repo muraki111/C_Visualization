@@ -19,10 +19,10 @@ float cpoint[4][4]=	{
 					{0.0, 1.0, 0.0, 1.0 }//曲線座標(x,y,z,?)
 					};
 float circle_x = 0;//S字から見て奥手前移動
-float circle_y = 0;//S字から見て上下
+float circle_y = 1;//S字から見て上下
 float circle_z = 0;//S字から見て左右
 float angle = 0;//輪っかの回転
-
+int check = 0;
 GLUnurbsObj *nrb_obj;
 void create_nurbs(void)
 {
@@ -84,7 +84,7 @@ void display(void)
 		glPushMatrix();//サークル
 			glTranslatef(0, 0, 0);
 			glRotatef(angle, 1, 0, 0);					//サークル回転
-			glTranslatef(circle_x, circle_y + 1, circle_z); //サークル位置
+			glTranslatef(circle_x, circle_y, circle_z); //サークル位置
 			glColor3f(1.0, 0, 0);			   //サークル色
 			glutWireTorus(0.05, 0.25, 50, 100);//サークル(太さ,大きさ,?,?)
 
@@ -101,9 +101,11 @@ void display(void)
 			glPopMatrix();
 
 			glPushMatrix();
-				glutWireCube(0.5);
+			printf("%f\n", circle_y);
+			if (circle_y == 1)glColor3f(1, 0, 0);
+			glTranslatef(-1, -0.25, 1);
+			glutWireCube(0.5);
 			glPopMatrix();
-		glPopMatrix();
 
 	glPopMatrix();
 	glutSwapBuffers();
