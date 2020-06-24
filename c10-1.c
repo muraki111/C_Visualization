@@ -31,6 +31,7 @@ float check_f = 0;//当たり判定用
 int reset = 0;//rキー動作
 int stick_z = 2;
 int stick_y = 1;
+int stage = 1;//レベル判定用
 
 GLUnurbsObj *nrb_obj;
 void create_nurbs(void)
@@ -119,10 +120,19 @@ void display(void)
 				reset = 0;
 			}
 			check_i = circle_y * 100;
-			if (check_i == -100){
+			if (check_i == -100 && stage == 1){
 				circle_y = 1;
 				circle_z = 0;
 				angle = 0;
+			}else if(check_i == -100 && stage == 2){
+					circle_y = 1;
+					circle_z = 0;
+					angle = 0;
+			}else if(check_i == -200 && stage == 3){
+					circle_z = 0;
+					angle = 0;
+					circle_y = 2;
+					circle_a_y = -2;
 			}
 
 				printf("check _i = %d	circle_y = %f	circle_z= %f	angel = %f\n", check_i, circle_y, circle_z, angle);
@@ -153,20 +163,30 @@ void myKbd(unsigned char key, int x, int y)//キーボード処理
 		stick_z = 2;
 		stick_y = 1;
 		circle_y = 1;
+		circle_a_y = -1;
 		reset = 1; //サークル位置
-	}else if (key == '2') {
+		stage = 1;
+	}
+	else if (key == '2')
+	{
 		srand((unsigned int) time(NULL));
 		int price = (rand()%3+1);
 		stick_z = 4;
 		circle_y = 1;
+		circle_a_y = -1;
 		reset = 1;//サークル位置
-	}else if (key == '3') {
+		stage = 2;
+	}
+	else if (key == '3')
+	{
 		srand((unsigned int) time(NULL));
 		int price = (rand()%3+1);
 		stick_z = 6;
 		stick_y = 2;
 		circle_y = 2;
+		circle_a_y = -2;
 		reset = 1; //サークル位置
+		stage = 3;
 	}
 
 	glutPostRedisplay();
