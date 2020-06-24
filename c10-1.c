@@ -112,17 +112,6 @@ void display(void)
 			printf("check _i = %d	circle_y = %f	angel = %f\n", check_i,circle_y,angle);
 		glPopMatrix();
 
-		// glPushMatrix();
-		// 	check_i = circle_y * 1000;
-		// 	printf("check _i = %d	circle_y = %f	angel = %f\n", check_i,circle_y,angle);
-		// 	// if (check_i == 810 || check_i == 1189){
-		// 	// 	circle_y = 1;
-		// 	// 	circle_z = 0;
-		// 	// }
-		// 	glTranslatef(0, -0.25, 0);
-		// 	glutWireCube(0.5);//当たり判定用キューブ
-		// glPopMatrix();
-
 	glPopMatrix();
 	glutSwapBuffers();
 }
