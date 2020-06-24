@@ -2,6 +2,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <math.h>
+#include <stdio.h>
 #define KEY_ESC 27
 
 void polarview( void );
@@ -22,7 +23,10 @@ float circle_x = 0;//S字から見て奥手前移動
 float circle_y = 1;//S字から見て上下
 float circle_z = 0;//S字から見て左右
 float angle = 0;//輪っかの回転
-int check = 0;
+int check_i = 0;//当たり判定用
+float check_f = 0;//当たり判定用
+int reset = 0;//rキー動作
+
 GLUnurbsObj *nrb_obj;
 void create_nurbs(void)
 {
@@ -98,14 +102,26 @@ void display(void)
 			glTranslatef(0,0 + 0.5,0);
 			glutWireCube(0.08);
 
-			glPopMatrix();
+			if(reset == 1){
+				angle = 0;
+				circle_y = 1;
+				circle_z = 0;
+				reset = 0;
+			}
 
-			glPushMatrix();
-			printf("%f\n", circle_y);
-			if (circle_y == 1)glColor3f(1, 0, 0);
-			glTranslatef(-1, -0.25, 1);
-			glutWireCube(0.5);
-			glPopMatrix();
+			printf("check _i = %d	circle_y = %f	angel = %f\n", check_i,circle_y,angle);
+		glPopMatrix();
+
+		// glPushMatrix();
+		// 	check_i = circle_y * 1000;
+		// 	printf("check _i = %d	circle_y = %f	angel = %f\n", check_i,circle_y,angle);
+		// 	// if (check_i == 810 || check_i == 1189){
+		// 	// 	circle_y = 1;
+		// 	// 	circle_z = 0;
+		// 	// }
+		// 	glTranslatef(0, -0.25, 0);
+		// 	glutWireCube(0.5);//当たり判定用キューブ
+		// glPopMatrix();
 
 	glPopMatrix();
 	glutSwapBuffers();
@@ -119,6 +135,7 @@ void myKbd(unsigned char key, int x, int y)//キーボード処理
 	else if (key == 'd') circle_z -= 0.01; //S字から見て左右
 	else if (key == 'q') angle += 1;//S字から見て上下
 	else if (key == 'e') angle -= 1;//S字から見て左右
+	else if (key == 'r') reset = 1;
 	glutPostRedisplay();
 }
 
