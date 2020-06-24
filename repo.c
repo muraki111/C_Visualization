@@ -130,8 +130,8 @@ void display(void)
 					angle = 0;
 			}else if(check_i == -200 && stage == 3){
 					circle_z = 0;
-					angle = 0;
 					circle_y = 2;
+					angle = 0;
 					circle_a_y = -2;
 			}
 
@@ -156,7 +156,18 @@ void myKbd(unsigned char key, int x, int y)//キーボード処理
 	else if (key == 'd') circle_z -= 0.01; //S字から見て左右
 	else if (key == 'q') angle += 1;//S字から見て上下
 	else if (key == 'e') angle -= 1;//S字から見て左右
-	else if (key == 'r') reset = 1;//サークル位置
+	else if (key == 'r'){
+		if (stage == 1){
+			circle_y = 1;
+			circle_z = 0;
+		}else if (stage == 2){
+			circle_y = 1;
+			circle_z = 0;
+		}else if (stage == 3){
+			circle_z = 0;
+			circle_y = 2;
+		}
+	}
 	else if (key == '1') {
 		srand((unsigned int) time(NULL));
 		int price = (rand()%3+1);
