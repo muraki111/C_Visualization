@@ -15,3 +15,5 @@ repo.exe
 *.h
 *.bmp
 *.stl
+*.c
+!repo.c
