@@ -3,10 +3,12 @@
 #include <GL/glu.h>
 #include <math.h>
 #include <stdio.h>
+#include <time.h>
 #define KEY_ESC 27
 
 void polarview( void );
 void resetview( void );
+
 
 int xBegin = 0, yBegin = 0;
 float distance, twist, elevation, azimuth;
@@ -26,6 +28,8 @@ float angle = 0;//輪っかの回転
 int check_i = 0;//当たり判定用
 float check_f = 0;//当たり判定用
 int reset = 0;//rキー動作
+int stick_z = 2;
+int stick_y = 1;
 
 GLUnurbsObj *nrb_obj;
 void create_nurbs(void)
@@ -61,6 +65,12 @@ void display(void)
 			glColor3f(1.0, 1.0, 1.0);//曲線色
 
 			gluBeginCurve(nrb_obj);//曲線
+				float cpoint[4][4]={
+					{0.0, -stick_y, 0.0, 1.0 },//曲線座標(x,y,z,?)
+					{0.0, -0.5, stick_z, 1.0 },//曲線座標(x,y,z,?)
+					{0.0, 0.5, -stick_z, 1.0 },//曲線座標(x,y,z,?)
+					{0.0, stick_y, 0.0, 1.0 }//曲線座標(x,y,z,?)
+					};
 				gluNurbsCurve(nrb_obj,
 							8, knotvec,
 							4,
@@ -104,12 +114,17 @@ void display(void)
 
 			if(reset == 1){
 				angle = 0;
-				circle_y = 1;
 				circle_z = 0;
 				reset = 0;
 			}
 
-			printf("check _i = %d	circle_y = %f	angel = %f\n", check_i,circle_y,angle);
+			printf("check _i = %d	circle_y = %f	circle_z= %f	angel = %f\n", check_i,circle_y,circle_z,angle);
+		glPopMatrix();
+
+		glPushMatrix();
+			glTranslatef(0, -1, 0); //サークル位置
+			glColor3f(1.0, 0, 0);//サークル色
+			glutWireTorus(0.05, 0.25, 50, 100);//サークル(太さ,大きさ,?,?)
 		glPopMatrix();
 
 	glPopMatrix();
@@ -124,7 +139,29 @@ void myKbd(unsigned char key, int x, int y)//キーボード処理
 	else if (key == 'd') circle_z -= 0.01; //S字から見て左右
 	else if (key == 'q') angle += 1;//S字から見て上下
 	else if (key == 'e') angle -= 1;//S字から見て左右
-	else if (key == 'r') reset = 1;
+	else if (key == 'r') reset = 1;//サークル位置
+	else if (key == '1') {
+		srand((unsigned int) time(NULL));
+		int price = (rand()%3+1);
+		stick_z = 2;
+		stick_y = 1;
+		circle_y = 1;
+		reset = 1; //サークル位置
+	}else if (key == '2') {
+		srand((unsigned int) time(NULL));
+		int price = (rand()%3+1);
+		stick_z = 4;
+		circle_y = 1;
+		reset = 1;//サークル位置
+	}else if (key == '3') {
+		srand((unsigned int) time(NULL));
+		int price = (rand()%3+1);
+		stick_z = 6;
+		stick_y = 2;
+		circle_y = 2;
+		reset = 1; //サークル位置
+	}
+
 	glutPostRedisplay();
 }
 
