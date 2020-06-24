@@ -24,7 +24,8 @@ float cpoint[4][4]=	{
 float circle_x = 0;//S字から見て奥手前移動
 float circle_y = 1;//S字から見て上下
 float circle_z = 0;//S字から見て左右
-float angle = 0;//輪っかの回転
+float circle_a_y = -1;//クリア判定用サークル座標上下
+float angle = 0; //輪っかの回転
 int check_i = 0;//当たり判定用
 float check_f = 0;//当たり判定用
 int reset = 0;//rキー動作
@@ -117,12 +118,18 @@ void display(void)
 				circle_z = 0;
 				reset = 0;
 			}
+			check_i = circle_y * 100;
+			if (check_i == -100){
+				circle_y = 1;
+				circle_z = 0;
+				angle = 0;
+			}
 
-			printf("check _i = %d	circle_y = %f	circle_z= %f	angel = %f\n", check_i,circle_y,circle_z,angle);
-		glPopMatrix();
+				printf("check _i = %d	circle_y = %f	circle_z= %f	angel = %f\n", check_i, circle_y, circle_z, angle);
+			glPopMatrix();
 
-		glPushMatrix();
-			glTranslatef(0, -1, 0); //サークル位置
+			glPushMatrix();
+			glTranslatef(0, circle_a_y, 0); //サークル位置
 			glColor3f(1.0, 0, 0);//サークル色
 			glutWireTorus(0.05, 0.25, 50, 100);//サークル(太さ,大きさ,?,?)
 		glPopMatrix();
